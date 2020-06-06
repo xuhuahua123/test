@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+		<mapper namespace="com.xy.dao.BookDao">
+
+			<select id="getBookByPage" resultType="com.xy.entity.Book">
+				select
+					bookid bookId,
+					book_name bookName,
+					public_dept publicDept,
+					book_price bookPrice,
+					public_date publicDate,
+					book_auth bookAuth,
+					img_path imgPath,
+					summary
+				from book
+				limit #{start},#{pageSize}
+
+
+			</select>
+
+			<select id="getBookById" resultType="com.xy.entity.Book">
+				select
+					bookid bookId,
+					book_name bookName,
+					public_dept publicDept,
+					book_price bookPrice,
+					public_date publicDate,
+					book_auth bookAuth,
+					img_path imgPath,
+					summary
+				from book
+				where
+					bookid = #{id}
+
+			</select>
+
+			<select id="getRowsCount" resultType="java.lang.Integer">
+				select count(bookid)
+				from book
+
+			</select>
+
+			<insert id="addBook" useGeneratedKeys="true" keyColumn="book.bookid">
+				insert into book
+				(bookid,book_name,public_dept,book_price,public_date,book_auth,img_path,summary)
+				values
+				(#{book.bookId},#{book.bookName},#{book.publicDept},#{book.bookPrice},#{book.publicDate},#{book.bookAuth},#{book.imgPath},#{book.summary})
+			</insert>
+	
+
+		</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+		<mapper namespace="com.xy.dao.UserDao">
+			<select id="getUserById" resultType="com.xy.entity.User">
+				select
+					userid,
+					loginname loginName,
+					loginpwd loginPwd,
+					realname,
+					phone
+				from t_user
+				where loginName = #{loginName}
+
+			</select>
+
+			<insert id="putUser">
+				insert into t_user
+				(userid,loginName,loginPwd,realname,phone)
+				values
+				(#{user.userid},#{user.loginName},#{user.loginPwd},#{user.realName},#{user.phone})
+
+			</insert>
+		
+		</mapper>

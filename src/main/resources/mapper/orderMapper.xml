@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+		<mapper namespace="com.xy.dao.OrderDao">
+
+			<select id="getAccount" resultType="com.xy.entity.Account">
+				select
+					accid accId,
+					accName,
+					balance,
+					userid userId
+				from t_account
+				where userid=#{userId}
+
+			</select>
+	
+			<select id="getBalance" resultType="java.lang.Integer">
+				select balance from t_account where accId = #{id}
+			</select>
+
+			<update id="updateAccount">
+				update t_account
+				set
+					balance = #{account.balance}
+				where accid = #{account.accId}
+
+
+
+			</update>
+		</mapper>
